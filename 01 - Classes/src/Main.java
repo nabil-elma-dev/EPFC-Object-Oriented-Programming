@@ -4,6 +4,6 @@ public class Main {
         System.out.println(d.day);
         d.increment();
         System.out.println(d.day);
-
+        System.out.println(d.dayOfYear());
     }
 }
