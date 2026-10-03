@@ -32,15 +32,15 @@ public class Date {
     }
 
     public int dayOfYear() {
-        int days = 0;
+        int nbDays = 0;
         for (int currentMonth = 1; currentMonth < this.month; ++currentMonth) {
-            days += switch (currentMonth) {
+            nbDays += switch (currentMonth) {
                 case 1, 3, 5, 7, 8, 10, 12 -> 31;
                 case 2 -> Date.isLeapYear(this.year) ? 29 : 28;
                 default -> 30;
             };
         }
-        return days += this.day;
+        return nbDays += this.day;
     }
 
     public int dayOfWeek() {
@@ -54,7 +54,7 @@ public class Date {
         return dayOfW;
     }
 
-    private int monthZeller() {
+    public int monthZeller() {
         return switch (this.month) {
             case 1 -> 13;
             case 2 -> 14;
@@ -62,9 +62,9 @@ public class Date {
         };
     }
 
-    private int yearZeller() {
+    public int yearZeller() {
         return switch (monthZeller()) {
-            case 13, 14 -> --this.year;
+            case 13, 14 -> this.year - 1; // (!) this.year - 1 OK; --this.year modifies attribute year!!!
             default -> this.year;
         };
 
