@@ -21,9 +21,10 @@ public class Date {
     }
 
     public Date() {
-        setDay(LocalDate.now().getDayOfMonth());
-        setMonth(LocalDate.now().getMonthValue());
-        setYear(LocalDate.now().getYear());
+        this(LocalDate.now().getDayOfMonth(),
+                LocalDate.now().getMonthValue(),
+                LocalDate.now().getYear());
+
     }
 
     public void setDay(int day) {
