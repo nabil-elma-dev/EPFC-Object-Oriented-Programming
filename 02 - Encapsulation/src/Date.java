@@ -49,50 +49,50 @@ public class Date {
 
     public void increment() {
         if (lastDayOfMonth()) {
-            day = 1;
+            setDay(1);
             if (month == 12) {
-                month = 1;
-                year++;
+                setMonth(1);
+                setYear(getYear() + 1);
             } else {
-                month++;
+                setMonth(getMonth() + 1);
             }
         } else {
-            day++;
+            setDay(getDay() + 1);
         }
     }
 
-    private int daysInMonth(int aMonth, int aYear) {
+    private static int daysInMonth(int aMonth, int aYear) {
         final int[] DAYS_IN_MONTHS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         return DAYS_IN_MONTHS[aMonth - 1] + (isLeapYear(aYear) && aMonth == 2 ? 1 : 0);
     }
 
     private int daysInMonth() {
-        return daysInMonth(month, year);
+        return daysInMonth(getMonth(), getYear());
     }
 
     private boolean lastDayOfMonth() {
-        return day == daysInMonth();
+        return getDay() == daysInMonth();
     }
 
-    private boolean isLeapYear(int aYear) {
+    private static boolean isLeapYear(int aYear) {
         return aYear % 400 == 0 || (aYear % 100 != 0 && aYear % 4 == 0);
     }
 
     private boolean isLeapYear() {
-        return isLeapYear(year);
+        return isLeapYear(getYear());
     }
 
     public int dayOfYear() {
-        int dayOfYear = this.day;
-        for (int i = 1; i < month; i++) {
-            dayOfYear += daysInMonth(i, year);
+        int dayOfYear = this.getDay();
+        for (int i = 1; i < getMonth(); i++) {
+            dayOfYear += daysInMonth(i, getYear());
         }
         return dayOfYear;
     }
 
     public int dayOfWeek() {
-        int m = this.month; // local copies because
-        int y = this.year;  // month and year can be modified
+        int m = this.getMonth(); // local copies because
+        int y = this.getYear();  // month and year can be modified
         if (m == 1 || m == 2) {
             m += 12;
             y--;
@@ -100,7 +100,7 @@ public class Date {
 
         int century = y / 100;
         int yearOfCentury = y % 100;
-        int dayOfWeek = (day
+        int dayOfWeek = (this.getDay()
                 + (((m + 1) * 26) / 10)
                 + yearOfCentury
                 + (yearOfCentury / 4)
@@ -122,8 +122,8 @@ public class Date {
                 "Jeudi", "Vendredi", "Samedi",
                 "Dimanche"
         };
-        return DAY_IN_FRENCH[dayOfWeek()] + " " + day + " "
-                + MONTH_IN_FRENCH[month - 1] + " " + year
+        return DAY_IN_FRENCH[dayOfWeek()] + " " + this.getDay() + " "
+                + MONTH_IN_FRENCH[this.getMonth() - 1] + " " + this.getYear()
                 + " le " + dayOfYear() + "-ième jour de l'année";
     }
 
