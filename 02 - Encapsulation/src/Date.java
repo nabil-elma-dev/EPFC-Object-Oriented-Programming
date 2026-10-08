@@ -1,13 +1,50 @@
 public class Date {
 
-    public int day;
-    public int month;
-    public int year;
+    private int day;
+    private int month;
+    private int year;
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        if (day < 1 && day > this.daysInMonth()) {
+            throw new RuntimeException("Error: incorrect value for \"day\" attribute");
+        }
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        if (month < 1 || month > 12 || this.day > daysInMonth(month, this.year)) {
+            throw new RuntimeException("Error: incorrect value for \"month\" attribute");
+        }
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        if (isLeapYear() && !isLeapYear(year) && this.month == 2 && this.day == 29) {
+            throw new RuntimeException("Error: incorrect value for \"year\" attribute (leap year into non-leap year while in 29th of february!)");
+        }
+        this.year = year;
+    }
 
     public Date(int day, int month, int year) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
+        if (month < 1 || month > 12 ||
+                day < 1 || day > daysInMonth(month, year)) {
+            throw new RuntimeException("Invalid date passed to the constructor");
+        }
+        setDay(day);
+        setMonth(month);
+        setYear(year);
     }
 
     public void increment() {
