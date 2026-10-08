@@ -1,11 +1,29 @@
+import java.time.LocalDate;
+
 public class Date {
 
     private int day;
     private int month;
     private int year;
 
+    public Date(int day, int month, int year) {
+        if (month < 1 || month > 12 ||
+                day < 1 || day > daysInMonth(month, year)) {
+            throw new RuntimeException("Invalid date passed to the constructor");
+        }
+        setDay(day);
+        setMonth(month);
+        setYear(year);
+    }
+
     public int getDay() {
         return day;
+    }
+
+    public Date() {
+        setDay(LocalDate.now().getDayOfMonth());
+        setMonth(LocalDate.now().getMonthValue());
+        setYear(LocalDate.now().getYear());
     }
 
     public void setDay(int day) {
@@ -35,16 +53,6 @@ public class Date {
             throw new RuntimeException("Error: incorrect value for \"year\" attribute (leap year into non-leap year while in 29th of february!)");
         }
         this.year = year;
-    }
-
-    public Date(int day, int month, int year) {
-        if (month < 1 || month > 12 ||
-                day < 1 || day > daysInMonth(month, year)) {
-            throw new RuntimeException("Invalid date passed to the constructor");
-        }
-        setDay(day);
-        setMonth(month);
-        setYear(year);
     }
 
     public void increment() {
