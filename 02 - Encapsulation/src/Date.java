@@ -24,7 +24,6 @@ public class Date {
         this(LocalDate.now().getDayOfMonth(),
                 LocalDate.now().getMonthValue(),
                 LocalDate.now().getYear());
-
     }
 
     public void setDay(int day) {
