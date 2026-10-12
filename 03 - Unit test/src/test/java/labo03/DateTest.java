@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 
 import main.java.labo03.Date;
+import main.java.labo03.Program;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -169,5 +170,20 @@ public class DateTest {
         assertTrue(d1.compareTo(d2) < 0);
         assertEquals(0, d1.compareTo(d1bis));
         assertFalse(d1bis.compareTo(d2) > 0);
+    }
+
+    @Test
+    public void testSortingDates() {
+        Date[] dates = {
+                new Date(22, 10, 1967),
+                new Date(1, 5, 1998),
+                new Date(10,7,1964),
+                new Date(18,4,1999)
+        };
+        Program.sortArray(dates); // increasing collection (youngest to oldest)
+        assertEquals(0, new Date(18, 4, 1999).compareTo(dates[0]));
+        assertEquals(0, new Date(1, 5, 1998).compareTo(dates[1]));
+        assertEquals(0, new Date(22, 10, 1967).compareTo(dates[2]));
+        assertEquals(0, new Date(10, 7, 1964).compareTo(dates[3]));
     }
 }
