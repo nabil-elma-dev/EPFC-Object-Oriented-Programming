@@ -160,4 +160,14 @@ public class DateTest {
         Date d2 = new Date(1,5,1998);
         assertEquals(d1, d2);
     }
+
+    @Test
+    public void testCompareToDate() {
+        Date d1 = new Date(1,5,1998);
+        Date d1bis = new Date(1,5,1998);
+        Date d2 = new Date(18,4,1999);
+        assertTrue(d1.compareTo(d2) < 0);
+        assertEquals(0, d1.compareTo(d1bis));
+        assertFalse(d1bis.compareTo(d2) > 0);
+    }
 }
