@@ -64,7 +64,7 @@ public class Date {
     }
 
     public void setMonth(int month) {
-        if (month >= 1 && month <= 12) {
+        if (month >= 1 && month <= 12 && this.day <= daysInMonth(month, this.year)) {
             this.month = month;
         } else {
             throw new RuntimeException("incorrect month");
@@ -76,6 +76,9 @@ public class Date {
     }
 
     public void setYear(int year) {
+        if (isLeapYear() && !isLeapYear(year) && this.month == 2 && this.day == 29) {
+            throw new RuntimeException("Error: incorrect value for \"year\" attribute (leap year into non-leap year while in 29th of february!)");
+        }
         this.year = year;
     }
 
