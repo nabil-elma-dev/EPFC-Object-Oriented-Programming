@@ -1,6 +1,7 @@
 package main.java.labo03;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Date {
 
@@ -149,6 +150,16 @@ public class Date {
         return DAY_IN_FRENCH[dayOfWeek()] + " " + getDay() + " "
                 + MONTH_IN_FRENCH[getMonth() - 1] + " " + getYear()
                 + " le " + dayOfYear() + "-ième jour de l'année";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Date d) {
+            return this.day == d.day
+                && this.month == d.month
+                && this.year == d.year;
+        }
+        return false;
     }
 
 }

@@ -116,4 +116,48 @@ public class DateTest {
         Date d = new Date(31, 1, 2012);
         d.setMonth(2);
     }
+
+    @Test
+    public void testEmptyConstructor() {
+        Date d = new Date();
+    }
+
+    @Test
+    public void testDayOfYear() {
+        Date dLeap = new Date(31, 12, 2012);
+        Date dLeapFirst = new Date(1, 1, 2012);
+        Date dNotLeap = new Date(31, 12, 2013);
+        Date dNotLeapFirst = new Date(1, 1, 2013);
+        assertEquals(366, dLeap.dayOfYear());
+        assertEquals(1, dLeapFirst.dayOfYear());
+        assertEquals(365, dNotLeap.dayOfYear());
+        assertEquals(1, dNotLeapFirst.dayOfYear());
+    }
+
+    @Test
+    public void testDayOfWeek() {
+        Date nabuntuDayOfBirth = new Date(1,5,1998);
+        assertEquals(4, nabuntuDayOfBirth.dayOfWeek()); // day of week should be Friday
+        Date timeOfCommit = new Date(12,10,2026);
+        assertEquals(0, timeOfCommit.dayOfWeek()); // day of week should be Monday
+    }
+
+    @Test
+    public void testWrongLeapYear() {
+        Date d = new Date(1,1, 2023);
+        assertFalse(Date.isLeapYear(d.getYear()));
+    }
+
+    @Test
+    public void testRightLeapYear() {
+        Date d = new Date(1,1, 2024);
+        assertTrue(Date.isLeapYear(d.getYear()));
+    }
+
+    @Test
+    public void testEqualsOnDate() {
+        Date d1 = new Date(1,5,1998);
+        Date d2 = new Date(1,5,1998);
+        assertEquals(d1, d2);
+    }
 }
