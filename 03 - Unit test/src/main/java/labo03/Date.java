@@ -165,6 +165,4 @@ public class Date {
     public int compareTo(Date other) {
         return (this.year * 10000 + this.month * 100 + this.day) - (other.getYear() * 10000 + other.getMonth() * 100 + other.getDay());
     }
-
-
 }

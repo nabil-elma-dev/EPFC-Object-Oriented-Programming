@@ -7,7 +7,6 @@ import main.java.labo03.Date;
 import main.java.labo03.Program;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 public class DateTest {
 
