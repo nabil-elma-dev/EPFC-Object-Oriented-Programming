@@ -1,5 +1,6 @@
 package test.java.labo04;
 
+import main.java.labo04.Car;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
