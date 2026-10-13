@@ -71,23 +71,23 @@ public class GarageTest {
         assertFalse(g.removeLastCar());
     }
 
-//    @Test
-//    public void testSort() {
-//        Garage g = new Garage(4);
-//        Car v1 = new Car("A", "a");
-//        Car v2 = new Car("C", "c");
-//        Car v3 = new Car("B", "b");
-//        Car v4 = new Car("A", "b");
-//        g.add(v1);
-//        g.add(v2);
-//        g.add(v3);
-//        g.add(v4);
-//        g.sort();
-//        assertSame(v1, g.getCar(1));
-//        assertSame(v4, g.getCar(2));
-//        assertSame(v3, g.getCar(3));
-//        assertSame(v2, g.getCar(4));
-//    }
+    @Test
+    public void testSort() {
+        Garage g = new Garage(4);
+        Car v1 = new Car("A", "a");
+        Car v2 = new Car("C", "c");
+        Car v3 = new Car("B", "b");
+        Car v4 = new Car("A", "b");
+        g.add(v1);
+        g.add(v2);
+        g.add(v3);
+        g.add(v4);
+        g.sort();
+        assertSame(v1, g.getCar(1));
+        assertSame(v4, g.getCar(2));
+        assertSame(v3, g.getCar(3));
+        assertSame(v2, g.getCar(4));
+    }
 
     @Test
     public void testToString() {

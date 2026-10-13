@@ -66,4 +66,20 @@ public class Garage {
         carList += " " + ((numberOfCars) + ") " + garage[numberOfCars - 1] + "\n");
         return carList;
     }
+
+    private void sort() {
+        for (int posCurrent = 0; posCurrent < numberOfCars; ++posCurrent) {
+            Car carMin = garage[posCurrent];
+            int posMin = posCurrent;
+            for (int posTarget = posCurrent + 1; posTarget < numberOfCars; ++posTarget) {
+                if (carMin.compareTo(garage[posTarget]) > 0) {
+                    carMin = garage[posTarget];
+                    posMin = posTarget;
+                }
+            }
+            Car carOccupyingMin = garage[posMin];
+            garage[posCurrent] = carMin;
+            garage[posMin] = carOccupyingMin;
+        }
+    }
 }
