@@ -34,6 +34,16 @@ public class Garage {
         return false;
     }
 
+    public boolean remove(int target) {
+        if (!this.isEmpty() && target >= 1 && target <= numberOfCars) {
+            target -= 1;
+            garage[target] = null;
+            --this.numberOfCars;
+            return true;
+        };
+        return false;
+    }
+
     public boolean add(Car newCar) {
         if (!isFull()) {
             this.garage[this.numberOfCars] = newCar;
@@ -41,6 +51,17 @@ public class Garage {
             return true;
         }
         return false;
+    }
+
+    public boolean add(Car newCar, int pos) {
+        if (pos <= 0 || pos > this.numberOfCars) {
+            return false;
+        }
+        pos -= 1;
+        garage[pos] = newCar;
+        ++this.numberOfCars;
+        return true;
+
     }
 
     public boolean contains(Car target) {

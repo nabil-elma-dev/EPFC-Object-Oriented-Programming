@@ -101,4 +101,27 @@ public class GarageTest {
         assertEquals(expected, g.toString());
     }
 
+    @Test
+    public void testAddAndRemoveFromAnyPos() {
+        Garage g = new Garage(4);
+        Car c1 = new Car("Renault", "Megane");
+        Car c2 = new Car("Lamborghini", "Urus");
+        Car c3 = new Car("Toyota", "Yaris");
+        Car c4 = new Car("Citroen", "C3");
+        g.add(c1);
+        g.add(c2);
+        g.add(c3);
+        g.add(c4);
+        assertSame(c3, g.getCar(3));
+        assertEquals(4, g.numberOfCars());
+        // Testing remove from any pos
+        g.remove(3);
+        assertNull(g.getCar(3));
+        assertEquals(3, g.numberOfCars());
+        // Testing add to any pos
+        Car newC = new Car("Suzuki", "Jimny");
+        g.add(newC, 3);
+        assertSame(newC, g.getCar(3));
+        assertEquals(4, g.numberOfCars());
+    }
 }
