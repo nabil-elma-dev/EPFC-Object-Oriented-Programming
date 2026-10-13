@@ -4,8 +4,8 @@ public class Garage {
     private int numberOfCars;
     private Car[] garage;
 
-    public Garage(int qty) {
-        this.garage = new Car[qty];
+    public Garage(int capacity) {
+        this.garage = new Car[capacity];
         this.numberOfCars = 0;
     }
 
@@ -26,7 +26,7 @@ public class Garage {
     }
 
     public boolean removeLastCar() {
-        if (!isEmpty()) {
+        if (!this.isEmpty()) {
             --this.numberOfCars;
             this.garage[this.numberOfCars] = null;
             return true;
@@ -67,19 +67,26 @@ public class Garage {
         return carList;
     }
 
-    private void sort() {
+    public void sort() {
         for (int posCurrent = 0; posCurrent < numberOfCars; ++posCurrent) {
-            Car carMin = garage[posCurrent];
-            int posMin = posCurrent;
-            for (int posTarget = posCurrent + 1; posTarget < numberOfCars; ++posTarget) {
-                if (carMin.compareTo(garage[posTarget]) > 0) {
-                    carMin = garage[posTarget];
-                    posMin = posTarget;
-                }
-            }
-            Car carOccupyingMin = garage[posMin];
-            garage[posCurrent] = carMin;
-            garage[posMin] = carOccupyingMin;
+            int posMin = posMinFrom(posCurrent);
+            swapCars(posCurrent, posMin);
         }
+    }
+
+    private void swapCars(int posCurrent, int posMin) {
+        Car carOccupyingPosMin = this.garage[posMin];
+        this.garage[posMin] = this.garage[posCurrent];
+        this.garage[posCurrent] = carOccupyingPosMin;
+    }
+
+    private int posMinFrom(int start) {
+        int posMin = start;
+        for (int currentPos = start + 1; currentPos < this.numberOfCars; ++currentPos) {
+            if (this.garage[currentPos].compareTo(this.garage[posMin]) < 0) {
+                posMin = currentPos;
+            }
+        }
+        return posMin;
     }
 }
