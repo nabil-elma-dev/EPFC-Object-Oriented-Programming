@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class QueueAndStackTest {
-    
+
     @Test
     public void testMyQueueBasics()
     {
@@ -21,7 +21,7 @@ public class QueueAndStackTest {
         assertEquals(Integer.valueOf(2),q.poll());
         assertEquals(Integer.valueOf(3),q.poll());
     }
-    
+
     @Test
     public void testMyQueueEdge()
     {
@@ -29,7 +29,7 @@ public class QueueAndStackTest {
         assertTrue(q.isEmpty());
         assertTrue(q.poll() == null);
     }
-    
+
     @Test
     public void testMyStackBasics()
     {
@@ -46,7 +46,7 @@ public class QueueAndStackTest {
         assertEquals(Integer.valueOf(2),q.pop());
         assertEquals(Integer.valueOf(1),q.pop());
     }
-    
+
     @Test(expected=RuntimeException.class)
     public void testMyStackEdge()
     {
@@ -55,5 +55,5 @@ public class QueueAndStackTest {
         q.pop();
     }
 
-    
+
 }
