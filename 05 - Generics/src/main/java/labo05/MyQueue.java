@@ -9,4 +9,28 @@ import java.util.List;
 public class MyQueue<E> {
     private final List<E> li = new LinkedList<>();
 
+    public boolean offer(E e) {
+        return li.add(e);
+    }
+
+    public E poll() {
+        return li.isEmpty() ?
+            null
+            : li.removeFirst();
+    }
+
+    public E peek() {
+        return li.isEmpty() ?
+                null
+                : li.getFirst();
+    }
+
+    public boolean isEmpty() {
+        return li.isEmpty();
+    }
+
+    public int size() {
+        return li.size();
+    }
+
 }
