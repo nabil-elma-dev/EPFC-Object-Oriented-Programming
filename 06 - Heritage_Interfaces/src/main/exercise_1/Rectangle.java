@@ -12,7 +12,16 @@ public class Rectangle extends Shape{
         this.height = height;
     }
 
-// METHODS
+// ACCESSORS
+    public double getLength() {
+        return length;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    // METHODS
     // Implemented methods
     @Override
     public void scale(double scaleParam) {

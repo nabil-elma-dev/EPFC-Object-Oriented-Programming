@@ -10,6 +10,11 @@ public class Circle extends Shape{
         this.radius = radius;
     }
 
+// ACCESSORS
+    public double getRadius() {
+        return radius;
+    }
+
 // METHODS
     // Implemented methods
     @Override
