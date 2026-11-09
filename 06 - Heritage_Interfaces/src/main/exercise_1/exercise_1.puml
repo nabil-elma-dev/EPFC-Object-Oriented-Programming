@@ -29,28 +29,33 @@ class Point {
     + toString : void
 }
 
-class Rectangle implements TranScalable{
+abstract class Shape implements TranScalable {
 -- Attributes --
     - p : Point <<final>>
+
+-- Implemented methods --
+    + translate(double, double) : void
+
+}
+
+class Rectangle extends Shape{
+-- Attributes --
     - length : double
     - height : double
 
--- implemented methods --
+-- Implemented methods --
     + scale(double) : void
-    + translate(double, double) : void
 
 -- ToString --
     + toString : void
 }
 
-class Circle implements TranScalable{
+class Circle extends Shape {
 -- Attributes --
-    - p : Point <<final>>
     - radius : double
 
--- implemented methods --
+-- Implemented methods --
     + scale(double) : void
-    + translate(double, double) : void
 
 -- ToString --
     + toString : void
