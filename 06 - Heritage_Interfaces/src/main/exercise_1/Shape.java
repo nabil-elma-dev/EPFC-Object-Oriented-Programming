@@ -11,9 +11,21 @@ public abstract class Shape implements TranScalable{
         return p;
     }
 
+// ACCESSORS (implemented from Translatable interface extending Positionable interface)
     @Override
-    public void translate(double xDelta, double yDelta) {
-        p.setPx(this.p.getPx() + xDelta);
-        p.setPy(this.p.getPy() + yDelta);
+    public double getPx() {
+        return this.p.getPx();
+    }
+    @Override
+    public double getPy() {
+        return this.p.getPy();
+    }
+    @Override
+    public void setPx(double newPx) {
+        this.p.setPx(newPx);
+    }
+    @Override
+    public void setPy(double newPy) {
+        this.p.setPy(newPy);
     }
 }

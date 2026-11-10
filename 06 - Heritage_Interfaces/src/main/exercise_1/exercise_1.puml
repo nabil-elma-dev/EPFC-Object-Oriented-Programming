@@ -1,25 +1,34 @@
 @startuml
 'https://plantuml.com/class-diagram
+left to right direction
+
+interface Positionable {
+-- Abstract methods --
+    {abstract} + getPx() : double
+    {abstract} + getPy() : double
+    {abstract} + setPx() : void
+    {abstract} + setPy() : void
+}
 
 interface Scalable {
 -- Abstract methods --
-    {abstract} + translate(double, double) : void
+    {abstract} + scale(double) : void
 }
 
-interface Translatable {
+interface Translatable extends Positionable {
 -- Abstract methods --
-   {abstract} + scale(double) : void
+   {default} + translate(double, double) : void
 }
 
 interface TranScalable implements Scalable, Translatable {
 }
 
-class Point {
+class Point implements Translatable {
 -- Attributes --
     - px : double
     - py : double
 
--- Accessors --
+-- Accessors (implemented)--
     + getPx() : double
     + getPy() : double
     + setPx() : void
@@ -32,6 +41,11 @@ class Point {
 abstract class Shape implements TranScalable {
 -- Attributes --
     - p : Point <<final>>
+-- Accessors (implemented)--
+    + getPx() : double
+    + getPy() : double
+    + setPx() : void
+    + setPy() : void
 
 -- Implemented methods --
     + translate(double, double) : void

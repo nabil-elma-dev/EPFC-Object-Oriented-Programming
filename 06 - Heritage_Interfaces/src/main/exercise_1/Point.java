@@ -1,6 +1,6 @@
 package main.exercise_1;
 
-public class Point {
+public class Point implements Translatable {
 // ATTRIBUTES
     private double px, py;
 
@@ -11,24 +11,25 @@ public class Point {
     }
 
 // ACCESSORS
-    // Getters
+    @Override
     public double getPx() {
-        return px;
+        return this.px;
     }
+    @Override
     public double getPy() {
-        return py;
+        return this.py;
+    }
+    @Override
+    public void setPx(double newPx) {
+        this.px = newPx;
+    }
+    @Override
+    public void setPy(double newPy) {
+        this.py = newPy;
     }
 
-    // Setters
-    public void setPx(double px) {
-        this.px = px;
-    }
-    public void setPy(double py) {
-        this.py = py;
-    }
-
+// METHODS
     // toSTring
-
     @Override
     public String toString() {
         return "(" + this.px + ", " + this.py + ")";

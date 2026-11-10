@@ -1,5 +1,8 @@
 package main.exercise_1;
 
-public interface Translatable {
-    public void translate (double px, double py);
+public interface Translatable extends Positionable {
+    default void translate (double deltaPx, double deltaPy) {
+        setPx(getPx() + deltaPx);
+        setPy(getPy() + deltaPy);
+    };
 }
