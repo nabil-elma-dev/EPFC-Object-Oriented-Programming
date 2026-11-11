@@ -1,4 +1,4 @@
-package test.exercise_1;
+package test;
 import static org.junit.Assert.*;
 
 import main.exercise_1.Circle;
