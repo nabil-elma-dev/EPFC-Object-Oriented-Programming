@@ -1,9 +1,9 @@
 package test;
 import static org.junit.Assert.*;
 
-import main.exercise_2.ComparatorFirstName;
-import main.exercise_2.ComparatorLastName;
-import main.exercise_2.Person;
+import main.exercise_2_n_3.ComparatorFirstName;
+import main.exercise_2_n_3.ComparatorLastName;
+import main.exercise_2_n_3.Person;
 import org.junit.Test;
 
 import java.util.ArrayList;
