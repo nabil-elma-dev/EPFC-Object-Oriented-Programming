@@ -2,41 +2,51 @@ package eu.epfc.labo12.calculator;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class JavaFXCalc extends Application {
 
-    public static Label numberOne = new Label("Number 1: ");
-    public static Label numberTwo = new Label("Number 2: ");
-    public static Label result = new Label("Result: ");
+    // Tools for row 1
+    private final Label numberOne = new Label("Number 1: ");
+    private final Label numberTwo = new Label("Number 2: ");
+    private final Label result = new Label("Result: ");
 
-    public static TextField txtOne = new TextField();
-    public static TextField txtTwo = new TextField();
-    public static TextField txtResult = new TextField();
+    private final TextField txtOne = new TextField();
+    private final TextField txtTwo = new TextField();
+    private final TextField txtResult = new TextField();
 
-    public static Button add = new Button("Add");
-    public static Button sub = new Button("Subtract");
-    public static Button multiply = new Button("Multiply");
-    public static Button divide = new Button("Divide");
+    // Tools for row 2
+    private final Button add = new Button("Add");
+    private final Button sub = new Button("Subtract");
+    private final Button multiply = new Button("Multiply");
+    private final  Button divide = new Button("Divide");
 
+    // Containers
+    private final HBox firstRow = new HBox();
+    private final HBox secondRow = new HBox();
+    private final VBox root = new VBox();
+
+    @Override
     public void start(Stage primaryStage) {
+    // Phase 0: calling methods to fill firstRow and secondRow HBoxes
+        firstRowBuilder();
+        secondRowBuilder();
 
-        GridPane root = new GridPane();
+    // Phase 1: adding all to root
+        root.getChildren().addAll(firstRow, secondRow);
 
-        HBox firstRow = firstRowBuilder();
-        HBox secondRow = secondRowBuilder();
-
+    // Phase 2: calling manageEvents method to make buttons and text fields above reactive
         manageEvents();
 
-        root.add(firstRow, 0, 0);
-        root.add(secondRow, 0, 1);
-
+    // Building javaFX page
         Scene scene = new Scene(root,600, 80);
 
         primaryStage.setTitle("JavaFX Calc");
@@ -44,21 +54,16 @@ public class JavaFXCalc extends Application {
         primaryStage.show();
     }
 
-    public static HBox firstRowBuilder() {
-        HBox firstRow = new HBox();
-
+    private void firstRowBuilder() {
         txtOne.setMaxWidth(50);
         txtTwo.setMaxWidth(50);
         txtResult.setMaxWidth(50);
 
         firstRow.getChildren().addAll(numberOne, txtOne, numberTwo, txtTwo, result, txtResult);
-        return firstRow;
     }
 
-    public static HBox secondRowBuilder() {
-        HBox secondRow = new HBox();
+    private void secondRowBuilder() {
         secondRow.getChildren().addAll(add, sub, multiply, divide);
-        return secondRow;
     }
 
     private void manageEvents() {
