@@ -5,16 +5,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Microwave extends Application {
     // Tools
     private final Button foodButton = new Button("Food to be placed here");
-    private final TextField timerTxtField = new TextField();
+    private final TextField timerTxtField = new TextField("Time to be displayed here");
 
     private final Button btnZero = new Button("0");
     private final Button btnOne = new Button("1");
@@ -30,17 +32,67 @@ public class Microwave extends Application {
     private final Button start = new Button("Start");
     private final Button stop = new Button("Stop");
 
+    private final List<Button> listButtons = new ArrayList<>();
+
     // Containers
     private final HBox microWave = new HBox();
-    private final BorderPane food = new BorderPane();
-    private final VBox timer = new VBox();
+    private final BorderPane foodPane = new BorderPane();
+    private final VBox timerBox = new VBox();
 
     @Override
     public void start(Stage primaryStage) {
 
+        foodPaneBuilder();
+        timerBoxBuilder();
+
+        microWave.getChildren().addAll(foodPane, timerBox);
+        Scene scene = new Scene(microWave,600, 200);
+
+        primaryStage.setTitle("The front view of a Microwave oven");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void foodPaneBuilder() {
+        sizingPanes(foodPane);
+        foodButton.setPrefSize(foodPane.getPrefWidth(), foodPane.getPrefHeight());
+        foodPane.setCenter(foodButton);
+    }
+
+    private void timerBoxBuilder() {
+        sizingPanes(timerBox);
+        setUpTimerButtons();
+        timerBox.getChildren().add(timerTxtField);
+        timerBox.getChildren().addAll(
+            buildTimerBoxRow(btnOne, btnTwo, btnThree),
+            buildTimerBoxRow(btnFour, btnFive, btnSix),
+            buildTimerBoxRow(btnSeven, btnEight, btnNine),
+            buildTimerBoxRow(btnZero, start, stop)
+        );
+    }
+
+    private HBox buildTimerBoxRow(Button btn1, Button btn2, Button btn3) {
+        HBox timerBoxRow = new HBox();
+        timerBoxRow.getChildren().addAll(btn1, btn2, btn3);
+        return timerBoxRow;
+    }
+
+
+    private void setUpTimerButtons() {
+        sizingTimerButtons(btnZero, btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, start, stop);
+    }
+
+    private void sizingPanes(Pane paneElem) {
+        paneElem.setPrefSize(300, 300);
+    }
+
+    private void sizingTimerButtons(Button... buttons) {
+        for (Button button : buttons) {
+            button.setPrefSize(timerBox.getPrefWidth() / 3, (timerBox.getPrefHeight() - 100) / 4);
+        }
     }
 }
